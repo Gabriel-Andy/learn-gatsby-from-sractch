@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "../examples/Header"
 import HeaderStatic from "../examples/HeaderStatic"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { graphql } from "gatsby"
 
 const example = ({ data }) => {
@@ -12,7 +12,7 @@ const example = ({ data }) => {
   } = data
   return (
     <Layout>
-      <h1>hello from example page</h1>
+      <p>hello from example page</p>
       <Header />
       <HeaderStatic />
       <h5>author:{author}</h5>

@@ -1,17 +1,47 @@
 import React from "react"
-import Layout from "../components/Layout"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
 import styles from "../components/product.module.css"
+import Image from "gatsby-image"
+import { Link } from "gatsby"
 
-export default function product() {
+const ComponentName = ({ data }) => {
+  const {
+    allContentfulProduct: { nodes: products },
+  } = data
+  console.log(data)
   return (
     <Layout>
-      <div className = {styles.page}>
-        <h1>this is my product component</h1>
-        <p className="text">
-          what is the best way to learn how to code and gain your first job as
-          programmer without having a cs degree
-        </p>
-      </div>
+      <section className={styles.page}>
+        {products.map(product => {
+          console.log(product)
+          return (
+            <article key={product.id}>
+              <Image fluid={product.image.fluid} alt={product.title} /> 
+            </article>
+          )
+        })}
+      </section>
     </Layout>
   )
 }
+
+export const query = graphql`
+  {
+    allContentfulProduct {
+      nodes {
+        id
+        price
+        title
+        slug
+        image {
+          fluid {
+            ...GatsbyContentfulFluid
+          }
+        }
+      }
+    }
+  }
+`
+
+export default ComponentName
