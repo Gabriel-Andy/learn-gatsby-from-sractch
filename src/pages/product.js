@@ -17,7 +17,11 @@ const ComponentName = ({ data }) => {
           console.log(product)
           return (
             <article key={product.id}>
-              <Image fluid={product.image.fluid} alt={product.title} /> 
+              <Image fluid={product.image.fluid} alt={product.title} />
+              <h3>
+                {product.title} <span>${product.price}</span>
+              </h3>
+              <Link to={`/products/${product.slug}`}>more details</Link>
             </article>
           )
         })}
